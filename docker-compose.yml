@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    ports:
+    - '5433:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: nestpostgres
+      POSTGRES_DB: nestdb
+    volumes:
+      - ./conf/postgres/initdb/:/docker-entrypoint-initdb.d/
+    networks:
+      - interdb
+
+  users-service:
+    container_name: users-service
+    build: ../nest-postgres/
+    volumes:
+      - ./:/app
+      - ./package.json:/app/package.json
+    ports: 
+      - '4000:4000'
+    depends_on:
+      - 'db'
+    environment:
+      DB_NAME: users
+      DB_URL: db
+    networks:
+      - interdb
+
+  pgAdmin:
+    image: "dpage/pgadmin4:latest"
+    ports:
+      - "15432:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@nest.com
+      PGADMIN_DEFAULT_PASSWORD: nestpostgres
+      PGADMIN_SERVER_JSON_FILE: /pgadmin4/conf/server.json
+    volumes:
+      - ./conf/pgadmin/:/pgadmin4/conf/
+    networks:
+      - interdb
+
+
+networks:
+  default:
+    name: emi_default
+    driver: bridge
+  interdb:
+    name: emi_interdb
+    driver: bridge
