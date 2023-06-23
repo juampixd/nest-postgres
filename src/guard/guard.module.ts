@@ -1,0 +1,8 @@
+import { Module } from '@nestjs/common';
+import { ServiceModule } from '../service/service.module';
+
+@Module({
+  imports: [ServiceModule],
+  providers: [],
+})
+export class GuardModule {}
