@@ -1,15 +1,13 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserEntity } from 'src/persistence/user.entity';
+import { UserEntity } from '../../persistence/user.entity';
 import { Repository } from 'typeorm';
-import { DataBasesEnum } from 'src/enums/data-bases.enum';
-import { CreateUserDto } from 'src/dto/create-user.dto';
-import { HttpService } from '@nestjs/axios';
+import { DataBasesEnum } from '../../enums/data-bases.enum';
+import { CreateUserDto } from '../../dto/create-user.dto';
 
 @Injectable()
 export class UserService {
   constructor(
-    private httpService: HttpService,
     @InjectRepository(UserEntity, DataBasesEnum.POSTGRES)
     private userRepository: Repository<UserEntity>,
   ) {}
