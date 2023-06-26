@@ -1,6 +1,8 @@
+import { DataBasesEnum } from 'src/enums/data-bases.enum';
 import { DataSource, DataSourceOptions } from 'typeorm';
 
 export const dataSourceOptions: DataSourceOptions = {
+  name: DataBasesEnum.POSTGRES,
   type: 'postgres',
   host: 'db',
   port: 5432,
