@@ -9,8 +9,8 @@ export const dataSourceOptions: DataSourceOptions = {
   username: 'postgres',
   password: 'nestpostgres',
   database: 'nestdb',
-  entities: [__dirname + '/**/*.entity{.ts,.js}'],
-  synchronize: true, // Set to false in production
+  entities: ['dist/**/*.entity.js'],
+  migrations: ['dist/db/migrations/*.js'],
 };
 
 const dataSource = new DataSource(dataSourceOptions);
