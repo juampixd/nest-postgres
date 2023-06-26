@@ -8,20 +8,11 @@ import { ControllersModule } from './controller/controller.module';
 import { DataBasesEnum } from './enums/data-bases.enum';
 import { GuardModule } from './guard/guard.module';
 import { ServiceModule } from './service/service.module';
+import { dataSourceOptions } from 'db/data-source';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      name: DataBasesEnum.POSTGRES,
-      type: DataBasesEnum.POSTGRES,
-      host: 'db',
-      port: 5432,
-      username: process.env.DB_USER || 'postgres',
-      password: process.env.DB_PASS || 'nestpostgres',
-      database: process.env.DB_NAME || 'users',
-      entities: [__dirname + '/persistence/*.entity{.ts,.js}'],
-      synchronize: true,
-    }),
+    TypeOrmModule.forRoot(dataSourceOptions),
     ControllersModule,
     ServiceModule,
     GuardModule,

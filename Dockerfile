@@ -1,7 +1,6 @@
 FROM node:latest AS builder
 WORKDIR /app
-COPY ./package.json ./
-COPY ./package-lock.json ./
+COPY ./package*.json ./ 
 RUN npm ci 
 COPY . .
 RUN npm run build
