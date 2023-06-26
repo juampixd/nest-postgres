@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: nestpostgres
-      POSTGRES_DB: nestdb
+      POSTGRES_DB: users
     volumes:
       - ./conf/postgres/initdb/:/docker-entrypoint-initdb.d/
     networks:
