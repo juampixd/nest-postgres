@@ -5,7 +5,7 @@ import { Classification } from '../enums/classification.enum';
 @Entity('users')
 export class UserEntity {
   @PrimaryGeneratedColumn('uuid', { name: 'user_id' })
-  id?: string;
+  id: string;
 
   @Column({ name: 'first_name', length: 100 })
   firstName: string;
@@ -16,7 +16,7 @@ export class UserEntity {
   @Column({ name: 'password', length: 100 })
   password: string;
 
-  @Column({ name: 'email', length: 100, unique: true })
+  @Column({ name: 'email', length: 100 })
   email: string;
 
   @Column({
@@ -28,7 +28,7 @@ export class UserEntity {
   @Column('int', { name: 'phone', default: 0 })
   phone: number;
 
-  @Column({ name: 'dni', length: 50, unique: true })
+  @Column({ name: 'dni', length: 50 })
   dni: string;
 
   @Column({ name: 'nickname' })
