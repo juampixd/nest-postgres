@@ -1,5 +1,4 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { ApiProperty } from '@nestjs/swagger';
 import { Classification } from '../enums/classification.enum';
 
 @Entity('users')
@@ -25,8 +24,8 @@ export class UserEntity {
   })
   classification: Classification;
 
-  @Column('int', { name: 'phone', default: 0 })
-  phone: number;
+  @Column({ name: 'phone', default: 0 })
+  phone: string;
 
   @Column({ name: 'dni', length: 50 })
   dni: string;
