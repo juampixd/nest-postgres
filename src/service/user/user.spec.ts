@@ -1,5 +1,4 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { HttpException, HttpStatus } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from '../../dto/create-user.dto';
 import { Repository } from 'typeorm';
@@ -18,18 +17,18 @@ describe('UserService', () => {
     find: jest.fn(),
   };
 
-  const token = {
-    firstName: 'Mauei',
-    lastName: 'Kikiua',
-    password: 'nepelo',
-    email: 'sergio@gmail.com',
-    classification: 'DEV',
-    phone: 75252723,
-    dni: '61728833',
-    username: 'kakacha',
-    status: 1,
-    id: '57093091-d86a-4b6d-9c06-52e94d84cb97',
-  };
+  // const token = {
+  //   firstName: 'Mauei',
+  //   lastName: 'Kikiua',
+  //   password: 'nepelo',
+  //   email: 'sergio@gmail.com',
+  //   classification: 'DEV',
+  //   phone: 75252723,
+  //   dni: '61728833',
+  //   username: 'kakacha',
+  //   status: 1,
+  //   id: '57093091-d86a-4b6d-9c06-52e94d84cb97',
+  // };
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
