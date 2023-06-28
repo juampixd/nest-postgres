@@ -1,16 +1,4 @@
-import {
-  IsEmail,
-  IsEnum,
-  IsInt,
-  IsNotEmpty,
-  IsNumber,
-  IsOptional,
-  IsString,
-  Max,
-  Min,
-} from '@nestjs/class-validator';
-
-import { Classification } from '../enums/classification.enum';
+import { IsOptional, IsString } from '@nestjs/class-validator';
 import { Matches } from 'class-validator';
 
 export class UpdateUserDto {
@@ -33,26 +21,6 @@ export class UpdateUserDto {
   @IsOptional()
   email: string;
 
-  @IsEnum(
-    [
-      Classification.DEV,
-      Classification.QA,
-      Classification.QA_LEAD,
-      Classification.DEV_LEAD,
-      Classification.PM,
-      Classification.PO,
-      Classification.RRHH,
-      Classification.EM,
-      Classification.MARKETING,
-    ],
-    {
-      each: true,
-      message: 'Classification entered is not available.',
-    },
-  )
-  @IsOptional()
-  classification: Classification;
-
   @IsString({ message: 'Phone must be a string.' })
   @IsOptional()
   phone: string;
@@ -60,8 +28,4 @@ export class UpdateUserDto {
   @IsString({ message: 'DNI must be a string.' })
   @IsOptional()
   dni: string;
-
-  @IsString({ message: 'Nickname must be a string.' })
-  @IsOptional()
-  username: string;
 }

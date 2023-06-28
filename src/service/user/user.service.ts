@@ -28,7 +28,7 @@ export class UserService {
   }
 
   async findAll() {
-    return await this.userRepository.find({ where: { status: 1 } });
+    return await this.userRepository.find();
   }
 
   async findUserById(id: string): Promise<UserEntity> {

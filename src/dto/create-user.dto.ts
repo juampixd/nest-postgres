@@ -1,11 +1,4 @@
-import {
-  IsEnum,
-  IsNotEmpty,
-  IsPhoneNumber,
-  IsString,
-} from '@nestjs/class-validator';
-
-import { Classification } from '../enums/classification.enum';
+import { IsNotEmpty, IsPhoneNumber, IsString } from '@nestjs/class-validator';
 import { IsOptional, Matches } from 'class-validator';
 
 export class CreateUserDto {
@@ -29,26 +22,6 @@ export class CreateUserDto {
   @IsNotEmpty({ message: 'Please provide an Email.' })
   email: string;
 
-  @IsEnum(
-    [
-      Classification.DEV,
-      Classification.QA,
-      Classification.QA_LEAD,
-      Classification.DEV_LEAD,
-      Classification.PM,
-      Classification.PO,
-      Classification.RRHH,
-      Classification.EM,
-      Classification.MARKETING,
-    ],
-    {
-      each: true,
-      message: 'Classification entered is not available.',
-    },
-  )
-  @IsNotEmpty({ message: 'Please provide a classification.' })
-  classification: Classification;
-
   @IsString({ message: 'Phone must be a string.' })
   @IsPhoneNumber('BO')
   @IsNotEmpty({ message: 'Please provide a address.' })
@@ -57,8 +30,4 @@ export class CreateUserDto {
   @IsString({ message: 'DNI must be a string.' })
   @IsNotEmpty({ message: 'Please provide a DNI.' })
   dni: string;
-
-  @IsString({ message: 'Nickname must be a string.' })
-  @IsNotEmpty({ message: 'Please provide a nickname.' })
-  username: string;
 }

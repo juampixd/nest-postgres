@@ -9,16 +9,9 @@ import {
   ParseUUIDPipe,
 } from '@nestjs/common';
 import { UserService } from '../../service/user/user.service';
-import {
-  ApiNotFoundResponse,
-  ApiOperation,
-  ApiResponse,
-  ApiTags,
-} from '@nestjs/swagger';
-import { UserEntity } from 'src/persistence/user.entity';
+import { ApiTags } from '@nestjs/swagger';
 import { CreateUserDto } from 'src/dto/create-user.dto';
 import { UpdateUserDto } from 'src/dto/update-user.dto';
-import { IsUUID } from 'class-validator';
 
 @ApiTags('Users')
 @Controller('users')
