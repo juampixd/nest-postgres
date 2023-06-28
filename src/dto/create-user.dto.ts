@@ -1,9 +1,8 @@
 import { IsNotEmpty, IsPhoneNumber, IsString } from '@nestjs/class-validator';
-import { IsOptional, Matches } from 'class-validator';
+import { Matches } from 'class-validator';
 
 export class CreateUserDto {
   @IsString({ message: 'First name must be a string.' })
-  @IsOptional()
   @IsNotEmpty({ message: 'Please provide a first name.' })
   firstName: string;
 
