@@ -36,11 +36,11 @@ export class UserController {
   }
 
   @Patch('/:id')
-  updateTaskStatus(
+  updateUser(
     @Param('id', ParseUUIDPipe) id: string,
     @Body() userData: UpdateUserDto,
   ) {
-    return this.userService.updateTaskStatus(id, userData);
+    return this.userService.updateUser(id, userData);
   }
 
   @Delete('/:id')

@@ -34,7 +34,7 @@ export class UserService {
   async findUserById(id: string): Promise<UserEntity> {
     const found = await this.userRepository.findOneBy({ id });
     if (!found) {
-      throw new NotFoundException(`Task with ID "${id}" not found`);
+      throw new NotFoundException(`User with ID "${id}" not found`);
     }
     return found;
   }
@@ -42,13 +42,13 @@ export class UserService {
   async deleteUser(id: string): Promise<void> {
     const result = await this.userRepository.delete(id);
     if (result.affected == 0) {
-      throw new NotFoundException(`Task with ID "${id}" not found`);
+      throw new NotFoundException(`User with ID "${id}" not found`);
     }
   }
 
-  async updateTaskStatus(id: string, data: UpdateUserDto): Promise<UserEntity> {
+  async updateUser(id: string, data: UpdateUserDto): Promise<UserEntity> {
     const user: UserEntity = await this.findUserById(id);
     this.userRepository.merge(user, data);
-    return await this.userRepository.save(user);
+    return this.userRepository.save(user);
   }
 }
