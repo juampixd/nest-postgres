@@ -7,6 +7,8 @@ import { ControllersModule } from './controller/controller.module';
 import { GuardModule } from './guard/guard.module';
 import { ServiceModule } from './service/service.module';
 import { dataSourceOptions } from 'db/data-source';
+import { APP_FILTER } from '@nestjs/core';
+import { HttpExceptionFilter } from './utils/http-filter/http.filter';
 
 @Module({
   imports: [
@@ -24,6 +26,12 @@ import { dataSourceOptions } from 'db/data-source';
     // ])
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_FILTER,
+      useClass: HttpExceptionFilter,
+    },
+  ],
 })
 export class AppModule {}

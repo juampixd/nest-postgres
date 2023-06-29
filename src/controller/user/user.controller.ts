@@ -7,11 +7,13 @@ import {
   Patch,
   Delete,
   ParseUUIDPipe,
+  HttpStatus,
 } from '@nestjs/common';
 import { UserService } from '../../service/user/user.service';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateUserDto } from 'src/dto/create-user.dto';
 import { UpdateUserDto } from 'src/dto/update-user.dto';
+import { ResponseCustom } from 'src/utils/response/response';
 
 @ApiTags('Users')
 @Controller('users')
@@ -21,18 +23,24 @@ export class UserController {
   }
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
+  async create(@Body() createUserDto: CreateUserDto) {
+    // const response = await this.userService.create(createUserDto);
+    // return new ResponseCustom(HttpStatus.CREATED, response);
     return this.userService.create(createUserDto);
   }
 
   @Get()
-  findAll() {
-    return this.userService.findAll();
+  async findAll() {
+    const response = await this.userService.findAll();
+    return new ResponseCustom(HttpStatus.OK, response);
+    // return this.userService.findAll();
   }
 
   @Get('/:id')
-  findById(@Param('id', ParseUUIDPipe) id: string) {
-    return this.userService.findUserById(id);
+  async findById(@Param('id', ParseUUIDPipe) id: string) {
+    const response = await this.userService.findUserById(id);
+    return new ResponseCustom(HttpStatus.OK, response);
+    // return this.userService.findUserById(id);
   }
 
   @Patch('/:id')
