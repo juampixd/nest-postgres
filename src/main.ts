@@ -17,17 +17,17 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
-  const config = new DocumentBuilder()
-    .setTitle('Users')
-    .setDescription('User API')
-    .setVersion('1.0')
-    .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api/docs', app, document, {
-    swaggerOptions: {
-      supportedSubmitMethods: [],
-    },
-  });
+  // const config = new DocumentBuilder()
+  //   .setTitle('Users')
+  //   .setDescription('User API')
+  //   .setVersion('1.0')
+  //   .build();
+  // const document = SwaggerModule.createDocument(app, config);
+  // SwaggerModule.setup('api/docs', app, document, {
+  //   swaggerOptions: {
+  //     supportedSubmitMethods: [],
+  //   },
+  // });
   /*
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));

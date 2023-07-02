@@ -18,29 +18,21 @@ import { ResponseCustom } from 'src/utils/response/response';
 @ApiTags('Users')
 @Controller('users')
 export class UserController {
-  constructor(private readonly userService: UserService) {
-    this.findAll();
-  }
+  constructor(private readonly userService: UserService) {}
 
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
-    // const response = await this.userService.create(createUserDto);
-    // return new ResponseCustom(HttpStatus.CREATED, response);
     return this.userService.create(createUserDto);
   }
 
   @Get()
   async findAll() {
-    const response = await this.userService.findAll();
-    return new ResponseCustom(HttpStatus.OK, response);
-    // return this.userService.findAll();
+    return this.userService.findAll();
   }
 
   @Get('/:id')
   async findById(@Param('id', ParseUUIDPipe) id: string) {
-    const response = await this.userService.findUserById(id);
-    return new ResponseCustom(HttpStatus.OK, response);
-    // return this.userService.findUserById(id);
+    return this.userService.findUserById(id);
   }
 
   @Patch('/:id')
