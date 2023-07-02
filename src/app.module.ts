@@ -26,12 +26,6 @@ import { HttpExceptionFilter } from './utils/http-filter/http.filter';
     // ])
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    {
-      provide: APP_FILTER,
-      useClass: HttpExceptionFilter,
-    },
-  ],
+  providers: [AppService],
 })
 export class AppModule {}
