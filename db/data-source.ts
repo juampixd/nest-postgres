@@ -4,7 +4,7 @@ import { DataSource, DataSourceOptions } from 'typeorm';
 export const dataSourceOptions: DataSourceOptions = {
   name: DataBasesEnum.POSTGRES,
   type: 'postgres',
-  host: 'db',
+  host: 'user-db',
   port: 5432,
   username: 'postgres',
   password: 'nestpostgres',
