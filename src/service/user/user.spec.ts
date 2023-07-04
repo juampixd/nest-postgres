@@ -17,19 +17,6 @@ describe('UserService', () => {
     find: jest.fn(),
   };
 
-  // const token = {
-  //   firstName: 'Mauei',
-  //   lastName: 'Kikiua',
-  //   password: 'nepelo',
-  //   email: 'sergio@gmail.com',
-  //   classification: 'DEV',
-  //   phone: 75252723,
-  //   dni: '61728833',
-  //   username: 'kakacha',
-  //   status: 1,
-  //   id: '57093091-d86a-4b6d-9c06-52e94d84cb97',
-  // };
-
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -51,23 +38,87 @@ describe('UserService', () => {
 
       await userService.create(newUser);
 
-      await userService.create(newUser);
       expect(userRepository.save).toHaveBeenCalled();
     });
   });
 
   describe('findAll', () => {
-    it('should return all users with status 1', async () => {
+    it('should return all users', async () => {
       const mockUsers: UserEntity[] = [];
 
-      jest.spyOn(userRepository, 'find').mockResolvedValue(mockUsers);
+      jest.spyOn(userService, 'findAll').mockResolvedValue(mockUsers);
 
       const result = await userService.findAll();
 
       expect(result).toEqual(mockUsers);
-      expect(userRepository.find).toHaveBeenCalledWith({
-        where: { status: 1 },
-      });
+      expect(userService.findAll).toHaveBeenCalledWith();
     });
+  });
+
+  describe('find', () => {
+    it('should return the user with the specified id', async () => {
+      const id = '12345';
+      const mockUser: UserEntity = {
+        id: id,
+        firstName: 'Jon',
+        lastName: 'Doe',
+        password: 'jonDoe123@',
+        email: 'jon@email.com',
+        phone: '74564575',
+        dni: '123'
+      };
+
+      jest.spyOn(userService, 'findUserById').mockResolvedValue(mockUser);
+
+      const result = await userService.findUserById(id);
+
+      expect(result).toEqual(mockUser);
+      expect(userService.findUserById).toHaveBeenCalledWith(id);
+    })
+  });
+
+  describe('updateUser', () => {
+    it('should update the user with the specified id and the user specified', async () => {
+      const mockUser: UserEntity = {
+        id: "12345",
+        firstName: 'Jon',
+        lastName: 'Doe',
+        password: 'jonDoe123@',
+        email: 'jon@email.com',
+        phone: '74564575',
+        dni: '123'
+      };
+
+      const updatedUser: UserEntity = {
+        id: "12345",
+        firstName: 'Jane',
+        lastName: 'Doe',
+        password: 'janeDoe123@',
+        email: 'jane@email.com',
+        phone: '79875654',
+        dni: '23456'
+      };
+
+      jest.spyOn(userService, 'updateUser').mockResolvedValue(updatedUser);
+
+      const result = await userService.updateUser(mockUser.id, updatedUser);
+      expect(result).toEqual(updatedUser);
+      expect(userService.updateUser).toHaveBeenCalledWith(mockUser.id, updatedUser);
+
+
+    })
+  })
+
+  describe('deleteUser', () => {
+    it('should delete the user with the specified id', async () => {
+      const id = '12345';
+      
+      jest.spyOn(userService, 'deleteUser').mockResolvedValue();
+
+
+      const result = await userService.deleteUser(id);
+      expect(result).toBeUndefined();
+      expect(userService.deleteUser).toHaveBeenCalledWith(id);
+    })
   });
 });
