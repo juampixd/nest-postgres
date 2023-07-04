@@ -32,9 +32,7 @@ export class UserService {
   }
 
   async findUserById(id: string): Promise<UserEntity> {
-    console.log('found');
     const found = await this.userRepository.findOneBy({ id });
-    console.log(found);
     if (!found) {
       throw new NotFoundException(`User with ID "${id}" not found`);
     }
